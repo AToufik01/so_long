@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:37:40 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/01 17:31:15 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/05 09:52:30 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	close_window(t_map *mp)
 {
 	destroy_img(mp);
+	free_2darr(mp->arr);
 	exit(0);
 }
 
@@ -39,12 +40,9 @@ void	update_posi(int keycode, t_map *mp)
 		mp->img_p = mp->img_p_l;
 		new_x += 1;
 	}
-	else if (keycode == 53 || keycode == 17)
-	{
-		destroy_img(mp);
-		exit(0);
-	}
-	check_wall(mp, mp->arr, new_x, new_y);
+	else if (keycode == 53)
+		close_window(mp);
+	check_wall(mp, new_x, new_y, keycode);
 }
 
 void	draw_and_print(t_map *mp)
@@ -75,6 +73,11 @@ int	main(int arc, char *arv[])
 	check_file_map(mp.src);
 	ft_initialization_s(&mp);
 	validation_maps(&mp);
+	if (mp.w_mp >= 43 || mp.h_mp >= 23)
+	{
+		free_2darr(mp.arr);
+		exit(0);
+	}
 	mp.mlx = mlx_init();
 	if (!mp.mlx)
 		return (1);

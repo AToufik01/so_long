@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 16:10:21 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/01 00:33:29 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:56:13 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*ft_itoa(int n)
 	if (n == 0)
 		n_digit = 1;
 	str = (char *)malloc(n_digit + 1);
+	if (!str)
+		return (0);
 	str[n_digit] = '\0';
 	while (n_digit)
 	{
@@ -53,6 +55,13 @@ void	number_move(t_map *mp)
 	char	*str;
 
 	str = ft_itoa(mp->n_move);
+	if (str == NULL)
+	{
+		destroy_img(mp);
+		free_2darr(mp->arr);
+		free(str);
+		exit(0);
+	}
 	mlx_string_put(mp->mlx, mp->mlx_win, 10, 0, 0xFFFFFF, "move = ");
 	mlx_string_put(mp->mlx, mp->mlx_win, 90, 0, 0xFFFFFF, str);
 	free(str);

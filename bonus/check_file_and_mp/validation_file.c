@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:54:12 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/01/31 23:57:33 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:21:36 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	check_file_map(char *str)
 		{
 			if (check_file(str, ".ber") != 0)
 			{
-				ft_putendl_fd("\033[1;31m file not valid\033[0m", 2);
+				ft_putendl_fd("\033[1;31merror !!\033[0m", 2);
+				ft_putendl_fd("\033[1;31mfile not valid\033[0m", 2);
 				exit(0);
 			}
 		}

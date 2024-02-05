@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 22:07:17 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/02 23:14:19 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/01 00:04:34 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	update_frame(t_map *mp)
 		mp->img_c = mp->img_c_l;
 	if (mp->p_y == mp->demon_y && mp->p_x == mp->demon_x)
 	{
-		destroy_img(mp);//
+		destroy_img(mp);
 		printgameover();
 	}
 	draw_and_print(mp);

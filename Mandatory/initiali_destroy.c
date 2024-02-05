@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:40:44 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/01 16:16:01 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:55:27 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	*xmp(t_map *mp, char *filname, int i)
 			i--;
 		}
 		ft_putendl_fd("\033[1;31m Error: Failed to load image\033[0m", 2);
+		free_2darr(mp->arr);
 		exit(0);
 	}
 	return (img);

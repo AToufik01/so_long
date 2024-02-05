@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:37:42 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/01 15:57:30 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/03 22:24:23 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_map
 
 int		ft_cont_heidth(const char *str, char c);
 char	**read_maps(t_map *mp);
+void	free_2darr(char **str);
 int		check_border_map(t_map *mp);
 void	validation_maps(t_map *mp);
 int		check_one_player(t_map *mp);
@@ -75,7 +76,7 @@ void	ft_initialization_s(t_map *mp);
 void	set_image(t_map *mp);
 void	destroy_img(t_map *mp);
 void	*xmp(t_map *mp, char *filname, int i);
-void	check_wall(t_map *mp, char **arr, int new_x, int new_y);
+void	check_wall(t_map *mp, int new_x, int new_y, int keycode);
 void	put_walls(t_map *mp);
 void	put_coins(t_map *mp);
 void	put_play_exit(t_map *mp);

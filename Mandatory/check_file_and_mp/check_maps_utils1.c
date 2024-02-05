@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 13:37:01 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/01/25 13:55:16 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:57:15 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	check_one_player(t_map *mp)
 
 	n = 0;
 	i = 0;
-	read_maps(mp);
 	while (mp->arr[i])
 	{
 		j = 0;
@@ -44,15 +43,14 @@ int	character_autoris(t_map *mp)
 	int	j;
 
 	i = 0;
-	read_maps(mp);
 	while (mp->arr[i])
 	{
 		j = 0;
 		while (mp->arr[i][j])
 		{
 			if (mp->arr[i][j] != 'P' && mp->arr[i][j] != '1'
-				&& mp->arr[i][j] != '0' && mp->arr[i][j] != 'C'
-				&& mp->arr[i][j] != 'E')
+			&& mp->arr[i][j] != '0' && mp->arr[i][j] != 'C'
+			&& mp->arr[i][j] != 'E')
 				return (0);
 			j++;
 		}
@@ -69,7 +67,6 @@ int	check_one_exit(t_map *mp)
 
 	e = 0;
 	i = 0;
-	read_maps(mp);
 	while (mp->arr[i])
 	{
 		j = 0;
@@ -95,7 +92,6 @@ int	check_coins(t_map *mp)
 
 	c = 0;
 	i = 0;
-	read_maps(mp);
 	while (mp->arr[i])
 	{
 		j = 0;

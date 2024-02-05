@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:37:20 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/01 17:30:48 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/05 10:22:02 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ char	**read_maps(t_map *mp)
 		free(str);
 		str = get_next_line(mp->fd);
 	}
+	free(str);
 	mp->arr = ft_split(res, '\n');
 	mp->h_mp = ft_cont_heidth(res, '\n');
+	free(res);
 	close(mp->fd);
 	return (mp->arr);
 }
@@ -79,19 +81,29 @@ int	check_border_map(t_map *mp)
 
 void	validation_maps(t_map *mp)
 {
-	if (check_one_player(mp) != 1)
-		ft_putendl_fd("\033[1;31m error player\033[0m", 2);
+	if (check_one_player(mp) != 1 || check_one_exit(mp) != 1
+		|| check_coins(mp) != 1)
+	{
+		ft_putendl_fd("\033[1;31merror !!\033[0m", 2);
+		ft_putendl_fd("\033[1;31mitem not valid\033[0m", 2);
+	}
 	else if (character_autoris(mp) != 1)
-		ft_putendl_fd("\033[1;31m error character\033[0m", 2);
-	else if (check_one_exit(mp) != 1)
-		ft_putendl_fd("\033[1;31m error exit\033[0m", 2);
-	else if (check_coins(mp) != 1)
-		ft_putendl_fd("\033[1;31m error coins\033[0m", 2);
+	{
+		ft_putendl_fd("\033[1;31merror !!\033[0m", 2);
+		ft_putendl_fd("\033[1;31mcharacter not valid\033[0m", 2);
+	}
 	else if (check_border_map(mp) != 1)
+	{
+		ft_putendl_fd("\033[1;31merror !!\033[0m", 2);
 		ft_putendl_fd("\033[1;31m Map  incorrect\033[0m", 2);
+	}
 	else if (!ft_place_use(mp, duplicat(mp)))
-		ft_putendl_fd("\033[1;31m error item rounded by wall\033[0m", 2);
+	{
+		ft_putendl_fd("\033[1;31merror !!\033[0m", 2);
+		ft_putendl_fd("\033[1;31mitem rounded by wall\033[0m", 2);
+	}
 	else
 		return ;
+	free_2darr(mp->arr);
 	exit(0);
 }

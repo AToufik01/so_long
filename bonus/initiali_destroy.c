@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:40:44 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/02 00:12:48 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:47:16 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	set_image(t_map *mp)
 	mp->img_c_l = xmp(mp, "imageusd/coins1.xpm", 4);
 	mp->img_ec = xmp(mp, "imageusd/exitc.xpm", 5);
 	mp->img_eo = xmp(mp, "imageusd/exito.xpm", 6);
-	mp->img_w = xmp(mp, "imageusd/wayll.xpm", 7);
+	mp->img_w = xmp(mp, "imageusd/wall.xpm", 7);
 	mp->img_demon_l = xmp(mp, "imageusd/demonl.xpm", 8);
 	mp->img_demon_r = xmp(mp, "imageusd/demonr.xpm", 9);
 	mp->images[0] = mp->img_b;
@@ -103,6 +103,7 @@ void	*xmp(t_map *mp, char *filname, int i)
 			i--;
 		}
 		ft_putendl_fd("\033[1;31m Error: Failed to load image\033[0m", 2);
+		free_2darr(mp->arr);
 		exit(0);
 	}
 	return (img);
