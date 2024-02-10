@@ -19,6 +19,7 @@ SRC = ./Mandatory/so_long.c \
     ./Mandatory/lb_used/ft_putchar_fd.c \
     ./Mandatory/lb_used/ft_calloc.c \
     ./Mandatory/lb_used/ft_bzero.c \
+    ./Mandatory/lb_used/ft_putstr_fd.c \
     ./Mandatory/lb_used/ft_strdup.c \
     ./Mandatory/lb_used/ft_split.c \
     ./Mandatory/lb_used/ft_putendl_fd.c \

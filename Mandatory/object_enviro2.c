@@ -21,3 +21,31 @@ void	put_img_exit(t_map *mp, int i, int j)
 		mlx_put_image_to_window(mp->mlx, mp->mlx_win,
 			mp->img_ec, j * 60, i * 60);
 }
+
+char	*ft_itoa(int n)
+{
+	char	*str;
+	int		num;
+	int		n_digit;
+
+	n_digit = 0;
+	num = n;
+	while (num != 0)
+	{
+		n_digit++;
+		num /= 10;
+	}
+	if (n == 0)
+		n_digit = 1;
+	str = (char *)malloc(n_digit + 1);
+	if (!str)
+		return (0);
+	str[n_digit] = '\0';
+	while (n_digit)
+	{
+		str[n_digit - 1] = n % 10 + '0';
+		n /= 10;
+		n_digit--;
+	}
+	return (str);
+}

@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 18:28:37 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/04 19:54:59 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/09 23:07:20 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	check_wall(t_map *mp, int new_x, int new_y, int keycode)
 {
+	char	*str;
+
 	if ((mp->arr[new_y][new_x] != '1') && (keycode == 126 ||
 			keycode == 13 || keycode == 125 || keycode == 1 ||
 			keycode == 123 || keycode == 0 || keycode == 124 || keycode == 2))
@@ -21,7 +23,10 @@ void	check_wall(t_map *mp, int new_x, int new_y, int keycode)
 		mp->n_move++;
 		mp->p_x = new_x;
 		mp->p_y = new_y;
-		printf("move =  %d\n", mp->n_move);
+		str = ft_itoa(mp->n_move);
+		ft_putstr_fd("move =  ", 1);
+		ft_putendl_fd(str, 1);
+		free(str);
 		if (mp->arr[new_y][new_x] == 'C')
 		{
 			mp->n++;

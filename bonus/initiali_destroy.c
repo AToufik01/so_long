@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 18:40:44 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/04 19:47:16 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/09 20:11:35 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,16 @@ void	ft_initialization_s(t_map *mp)
 	mp->n_c = 0;
 	mp->n = 0;
 	if ((open(mp->src, O_RDONLY)) == -1)
+	{
+		close(mp->fd);
 		exit(0);
+	}
 	read_maps(mp);
+	if (mp->arr == NULL)
+	{
+		ft_putendl_fd("\033[1;31merror !\nempty Map\033[0m", 2);
+		exit(0);
+	}
 	initialization_demon(mp);
 	mp->n_move = 0;
 	ft_in_pc(mp);
@@ -53,16 +61,16 @@ void	ft_initialization_s(t_map *mp)
 
 void	set_image(t_map *mp)
 {
-	mp->img_b = xmp(mp, "imageusd/background.xpm", 0);
-	mp->img_p_l = xmp(mp, "imageusd/playerl.xpm", 1);
-	mp->img_p_r = xmp(mp, "imageusd/playerr.xpm", 2);
-	mp->img_c_r = xmp(mp, "imageusd/coins5.xpm", 3);
-	mp->img_c_l = xmp(mp, "imageusd/coins1.xpm", 4);
-	mp->img_ec = xmp(mp, "imageusd/exitc.xpm", 5);
-	mp->img_eo = xmp(mp, "imageusd/exito.xpm", 6);
-	mp->img_w = xmp(mp, "imageusd/wall.xpm", 7);
-	mp->img_demon_l = xmp(mp, "imageusd/demonl.xpm", 8);
-	mp->img_demon_r = xmp(mp, "imageusd/demonr.xpm", 9);
+	mp->img_b = xmp(mp, "textures/background.xpm", 0);
+	mp->img_p_l = xmp(mp, "textures/playerl.xpm", 1);
+	mp->img_p_r = xmp(mp, "textures/playerr.xpm", 2);
+	mp->img_c_r = xmp(mp, "textures/coins5.xpm", 3);
+	mp->img_c_l = xmp(mp, "textures/coins1.xpm", 4);
+	mp->img_ec = xmp(mp, "textures/exitc.xpm", 5);
+	mp->img_eo = xmp(mp, "textures/exito.xpm", 6);
+	mp->img_w = xmp(mp, "textures/wall.xpm", 7);
+	mp->img_demon_l = xmp(mp, "textures/demonl.xpm", 8);
+	mp->img_demon_r = xmp(mp, "textures/demonr.xpm", 9);
 	mp->images[0] = mp->img_b;
 	mp->images[1] = mp->img_p_l;
 	mp->images[2] = mp->img_p_r;
@@ -102,7 +110,7 @@ void	*xmp(t_map *mp, char *filname, int i)
 			mlx_destroy_image(mp->mlx, mp->images[i]);
 			i--;
 		}
-		ft_putendl_fd("\033[1;31m Error: Failed to load image\033[0m", 2);
+		ft_putendl_fd("\033[1;31m Error !\nFailed to load image\033[0m", 2);
 		free_2darr(mp->arr);
 		exit(0);
 	}
